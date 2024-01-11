@@ -1,0 +1,6 @@
+//////////////////////////////////////
+In python you can iterate over a list
+In python you can order the arrangement of dictionaries
+In python you can import modules
+In python you can use object oriented programming
+In python you zip the contents of a tuple
