@@ -1,5 +1,6 @@
 import json
 
+# Responsible for retrieving stored username if one exists
 def get_stored_username():
     """Get stored username if available"""
     filename = 'StoredData (json)/username.json'
@@ -7,10 +8,12 @@ def get_stored_username():
         with open(filename) as f_obj:
             username = json.load(f_obj)
     except (FileNotFoundError, json.JSONDecodeError):
+        # Handles the case where the file is empty or doesn't exist
         return None
     else:
         return username
-    
+
+# Responsible for getting new username and storing it
 def get_new_username():
     """Prompt for a new username"""
     filename = 'StoringData (json)/username.json'
@@ -19,6 +22,7 @@ def get_new_username():
         json.dump(username, f_obj)
     return username
 
+# Prints an appropriate message: it either welcomes back an existing user or greets a new user
 def great_user():
     """Greet the user by name"""
     username = get_stored_username()
