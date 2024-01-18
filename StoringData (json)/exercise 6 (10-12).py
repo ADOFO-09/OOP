@@ -7,21 +7,35 @@ import json
 
 filename = "StoringData (json)/fav_number.json"
 prompt = "Enter your favorite number: "
-try:
+
+# Responsible for retrieving stored number
+def get_stored_number():
     with open(filename) as f_obj:
         fav_number = json.load(f_obj)
+        return fav_number
+
+# Responsible for storing new number
+def keep_new_number():
+     with open(filename, 'w') as f_obj:
+            json.dump(fav_number, f_obj)
+            msg = "Your favorite number will be remembered"
+            msg += " when you come back! it's " + str(fav_number)
+            print(msg)
+
+ 
+try:
+   get_stored_number()
         
 except (FileNotFoundError, json.JSONDecodeError):
-        try:
-            fav_number = int(input(prompt))
-        except ValueError:
-            print("Invalid literal, please enter a number")
-        else:
-            with open(filename, 'w') as f_obj:
-                json.dump(fav_number, f_obj)
-                msg = "Your favorite number will be remembered"
-                msg += " when you come back! it's " + str(fav_number)
-                print(msg)
-        
+# Handles the case where the file is empty or doesn't exist
+    try:
+# Responsible for getting new number
+        fav_number = int(input(prompt))
+    except ValueError:
+# Handles the case where the input is not an integer
+        print("Invalid literal, please enter a number")
+    else:
+        keep_new_number()  
 else:
+    fav_number = get_stored_number()
     print("Your favorite number is "+ str(fav_number))
