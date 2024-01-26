@@ -25,3 +25,7 @@ class TestAnonymousSurvey(unittest.TestCase):
         
 
 unittest.main()
+
+# we call store_response()
+# for each of these responses. Once the responses have been stored, we write 
+# another loop and assert that each response is now in my_survey.responses 
